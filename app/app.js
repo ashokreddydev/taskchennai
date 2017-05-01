@@ -1,11 +1,12 @@
-angular.module('Alarm',['ngRoute','mgcrea.ngStrap','ngCookies'])
+angular.module('Alarm',['ngRoute'])
 .config(['$routeProvider','$locationProvider',function($routeProvider,$locationProvider){
 	
 	$routeProvider
 
 	.when('/',{
 		templateUrl:'views/home.html',
-		controller:'homecontroller'
+        controller:'homecontroller'
+		
 	})
 	
 	
