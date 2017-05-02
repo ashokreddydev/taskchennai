@@ -38,7 +38,7 @@ Alarm.controller('homecontroller',['$scope',  function($scope){
 
         $scope.alarmDateSet=function(alarm)
                 {
-
+                    $scope.alarmscedule=true;
 
                         var listNew={
                             date:alarm.date,
@@ -67,7 +67,7 @@ Alarm.controller('homecontroller',['$scope',  function($scope){
     
     $scope.removeData=function(removeData)
         {
-             $scope.alarmscedule=true;
+           
        
                             for(var i=0 ;i<listOfAlarms.length;i++)
                                 {
