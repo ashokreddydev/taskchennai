@@ -15,7 +15,7 @@
    
     
     
-  <link rel="stylesheet" href="app/css/custom.css">
+  <link rel="stylesheet" href="taskchennai/app/css/custom.css">
     
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -26,7 +26,7 @@
 <!--        angular js cdn  -->
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-	<script type="text/javascript" src="https://code.angularjs.org/1.5.7/angular-route.js"></script>
+	<script type="text/javascript" src="app/js/angular-route.js"></script>
 
     <!--      End  angular js cdn  -->
     
@@ -50,10 +50,138 @@
 	<div ng-class='container' ng-view></div>
 	
 
- 
-    <script src="app/app.js"></script>
-	<script src="app/controllers/home.controllers.js"></script>
+    
+    <div id="myModal" class="modal" data-backdrop="false" aria-hidden="true" data-keyboard="false" >
 
+  <!-- Modal content -->
+  <div class="modal-content">
+  
+         <div class="modal-header">
+      
+        <h4 class="modal-title custom_align" id="Heading">Alarm</h4>
+      </div>
+       <div id="textAlarm" class="alert alert-success"><span class="glyphicon glyphicon-success-sign"></span> you are Alarm time</div>
+<!--      <button onclick="playSound()">Play</button>-->
+		<button class="btn btn-default col-md-offset-5 col-xs-offset-4 col-sm-offset-5" onclick="stopSound()">Dismiss</button>
+  
+   <audio  id="audio">
+                   
+		
+  <source src="http://www.sousound.com/music/healing/healing_01.mp3" type="audio/mpeg">
+
+</audio>
+  </div>
+
+</div>
+    
+    
+ 
+    <script src="taskchennai/app/app.js"></script>
+	<script src="taskchennai/app/controllers/home.controllers.js"></script>
+
+    <script>
+
+function playSound() {
+	audio.play();
+}
+        function stopSound() {
+            modal.style.display = "none";
+	audio.pause();
+}
+
+
+    </script>
+    
+    
+    
+  
+    
+    
+    
+ <script>
+// Get the modal
+
+     
+var modal = document.getElementById('myModal');
+
+
+
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
+
+
+ //automati load function
+    
+        setInterval(function(){ 
+            
+            var timeCompare=JSON.parse(localStorage.getItem("alertAlarm")); 
+                for(var i=0 ;i<timeCompare.length;i++)
+
+{
+
+var date = new Date(timeCompare[i].date);
+var y = date.getFullYear();
+var m = date.getMonth()+1;
+var d = date.getDate();
+
+
+
+var inputDate = new Date(m+"-"+d+"-"+y);
+var todaysDate = new Date();
+
+if((inputDate.setHours(0,0,0,0) == todaysDate.setHours(0,0,0,0)))
+{
+    
+    
+    
+    var now = new Date(timeCompare[i].time); 
+var str = now.toLocaleTimeString();
+var res = str.replace(/\.[0-9]{2,3}/, '');
+
+var now1 = new Date();
+var str1 = now1.toLocaleTimeString();
+var res1 = str1.replace(/\.[0-9]{2,3}/, '');
+//console .log(res==res1+"       "+res+"==="+res1);
+//    console.log("inter")
+    
+            if(res==res1)
+            {
+                
+                audio.play();
+                 modal.style.display = "block";
+                document.getElementById('textAlarm').innerHTML="Time :"+res;
+                 
+
+            }
+
+}
+else
+{
+  //  console.log(" no way inter")
+//console.log("Not equal")
+
+}
+
+
+}
+    
+    
+       }, 1000);
+
+
+
+
+
+
+
+</script>
     
 </body>
 </html>

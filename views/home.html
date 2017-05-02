@@ -4,64 +4,56 @@
         <!-- panel preview -->
         <div class="col-sm-12">
             <h4>Alarm:</h4>
+           
             <div class="panel panel-default">
                 <div class="panel-body form-horizontal payment-form">
+                    <form name="registerForm"
+      novalidate>
                         <div class="row">
-                <div class="col-md-3">
+                             
+                <div class="col-md-4">
                     <div class="form-group">
                         <label  class="control-label">Date</label>
-<!--
-                        <md-content layout-padding ng-cloak>
-  <div layout-gt-xs="row">
-    <div flex-gt-xs>
-      <h4>Standard date-picker</h4>
-      <md-datepicker ng-model="ctrl.myDate" md-placeholder="Enter date"></md-datepicker>
-    </div>
-                            </div>
 
-                            </md-content> -->
                                     
-                      <input type="date" ng-model="alarm.date" class="form-control" >
+                      <input type="date" ng-model="alarm.date" class="form-control" name="SetDate" ng-required="true">
+                       <p ng-show="registerForm.SetDate.$touched && registerForm.SetDate.$invalid">Date is required.</p>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Time</label>
-                        <input type="time" ng-model="alarm.time" class="form-control" >
+                        <input type="time" name="SetTime" ng-model="alarm.time"  class="form-control" required="true">
+                          <p ng-show="registerForm.SetTime.$touched && registerForm.SetTime.$invalid">Time is required.</p>
                     </div>
                 </div>
                
-                             <div class="col-md-3">
+                             <div class="col-md-4">
                     <div class="form-group">
                         <label for="lastname" class="control-label">Schedule</label>
-                        <select class="form-control" ng-model="alarm.repeate">
-                                <option value="Once">Once</option>
-                                <option value="Daily">Daily</option>
-                                <option value="Weekly">Weekly</option>
-                                
-                              </select> 
+                             <select  class="form-control" name="itemDescFormId" size="1" ng-model="alarm.repeate" required="true" >
+                        <option value="">Select</option>
+                       <option value="Once">Once</option>
+                                    <option value="Daily">Daily</option>
+                               
+</select>
+                          <span ng-show="myForm.service_id.$error.required">Select service</span>
+                    
+
                     </div>
                 </div>
-                              <div class="col-md-3">
-                    <div class="form-group">
+                              <div class="col-md-6 col-md-offset-5 col-xs-offset-4 col-sm-offset-5 ">
+                    <div class="form-group btn-margin">
                         
-                          <button type="button" ng-click="alarmDateSet(alarm)" class="btn btn-default ">
+                          <button type="button" ng-disabled="registerForm.$invalid" ng-click="alarmDateSet(alarm)" class="btn btn-default ">
                                 <span class="glyphicon glyphicon-plus"></span> Add
                             
                         </button>
                 </div>
-<!--
-                            <div class="col-md-3">
-                             <div class="form-group">
-                     <label for="lastname" class="control-label"></label>
-                            <button type="button" class="btn btn-default ">
-                                <span class="glyphicon glyphicon-plus"></span> Add
-                            </button>
-                       
-                    </div>
-                            </div>
--->
+
         </div>
+                    </div>
+                            </form>
                     
                   
                    
@@ -69,16 +61,20 @@
                     
                    
                 </div>
-            </div>            
+            </div> 
+                       
         </div> <!-- / panel preview -->
+        </div>
+        
+
         
         
         <!-- table preview -->
-        <div class="col-sm-12">
+        <div class="col-sm-12" ng-show="alarmscedule">
         
         
 
-        <h4>Bootstrap Snipp for Datatable</h4>
+        <h4>Alarm Schedule</h4>
         <div class="table-responsive">
 
                 
@@ -104,33 +100,13 @@
     <td>{{list.time  | date:"h:mma"}}</td>
     <td>{{list.repeate}}</td>
     
-<!--    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>-->
-    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
+
+    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs"  ng-click="removeData(list)" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
     </tr>
     
-<!--
- <tr>
-   
-    <td>01-05-2017</td>
-    <td>12:05 AM</td>
-    <td>Once</td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-    </tr>
+
     
-    
- <tr>
--->
-<!--
-   
-    <td>01-05-2017</td>
-    <td>12:05 AM</td>
-    <td>Once</td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Edit"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p></td>
-    <td><p data-placement="top" data-toggle="tooltip" title="Delete"><button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button></p></td>
-    </tr>
--->
-    
+
     
     
     </tbody>
@@ -143,66 +119,14 @@
             </div>
             
         </div>
-	</div>
+	
 </div>
 
+ 
 
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-      <div class="modal-dialog">
-    <div class="modal-content">
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">Edit Your Detail</h4>
-      </div>
-          <div class="modal-body">
-          <div class="form-group">
-        <input class="form-control " type="text" placeholder="Mohsin">
-        </div>
-        <div class="form-group">
-        
-        <input class="form-control " type="text" placeholder="Irshad">
-        </div>
-        <div class="form-group">
-        <textarea rows="2" class="form-control" placeholder="CB 106/107 Street # 11 Wah Cantt Islamabad Pakistan"></textarea>
     
-        
-        </div>
-      </div>
-          <div class="modal-footer ">
-        <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
-      </div>
-        </div>
-    <!-- /.modal-content --> 
-  </div>
-      <!-- /.modal-dialog --> 
-    </div>
+   
     
     
     
-    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
-      <div class="modal-dialog">
-    <div class="modal-content">
-          <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-        <h4 class="modal-title custom_align" id="Heading">Delete this entry</h4>
-      </div>
-          <div class="modal-body">
-       
-       <div class="alert alert-danger"><span class="glyphicon glyphicon-warning-sign"></span> Are you sure you want to delete this Record?</div>
-       
-      </div>
-        <div class="modal-footer ">
-        <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Yes</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
-      </div>
-        
-    <!-- /.modal-content --> 
-  
-      <!-- /.modal-dialog --> 
     
-        
-        </div>
-        <!-- /table preview -->
-      
-	</div>
-</div>
