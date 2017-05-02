@@ -51,7 +51,7 @@ Alarm.controller('homecontroller',['$scope',  function($scope){
                         
                           if((listOfAlarms==undefined)||(listOfAlarms==null)||(listOfAlarms.length==0))
                                {
-                                    
+                            $scope.alarm = {};
                                                    $scope.data=alarm;
                                         //        console.log(alarm);
                                         //        this.setAlarmdata=alarm;
@@ -94,6 +94,7 @@ Alarm.controller('homecontroller',['$scope',  function($scope){
 
                                         if((inputDate.setHours(0,0,0,0) == todaysDate.setHours(0,0,0,0))&&(res==res1))
                                         {
+                                            alert("Alarm is already active");
                                             results++;
                                         }
                                       
@@ -106,7 +107,7 @@ Alarm.controller('homecontroller',['$scope',  function($scope){
                                     
                                     if(results==0)
                                         {
-                                          
+                                            $scope.alarm = {};
                                                    $scope.data=alarm;
                                         //        console.log(alarm);
                                         //        this.setAlarmdata=alarm;
@@ -129,7 +130,7 @@ Alarm.controller('homecontroller',['$scope',  function($scope){
         }
 
 
-    
+
     
     $scope.removeData=function(removeData)
         {

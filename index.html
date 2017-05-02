@@ -15,7 +15,7 @@
    
     
     
-  <link rel="stylesheet" href="/taskchennai/app/css/custom.css">
+  <link rel="stylesheet" href="taskchennai/app/css/custom.css">
     
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -76,8 +76,8 @@
     
     
  
-    <script src="/taskchennai/app/app.js"></script>
-	<script src="/taskchennai/app/controllers/home.controllers.js"></script>
+    <script src="taskchennai/app/app.js"></script>
+	<script src="taskchennai/app/controllers/home.controllers.js"></script>
 
     <script>
 
@@ -95,7 +95,6 @@ function playSound() {
     
     
   
-    
     
     
  <script>
@@ -121,7 +120,16 @@ window.onclick = function(event) {
     
         setInterval(function(){ 
             
-            var timeCompare=JSON.parse(localStorage.getItem("alertAlarm")); 
+            var timeCompare=JSON.parse(localStorage.getItem("alertAlarm"));
+            
+            if((timeCompare==undefined)||(timeCompare==null)||(timeCompare.length==0))
+               {
+               
+               }
+               else{
+               
+               
+            
                 for(var i=0 ;i<timeCompare.length;i++)
 
 {
@@ -171,7 +179,8 @@ else
 
 
 }
-    
+   
+        }
     
        }, 1000);
 

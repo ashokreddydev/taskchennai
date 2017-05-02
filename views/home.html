@@ -16,22 +16,22 @@
                         <label  class="control-label">Date</label>
 
                                     
-                      <input type="date" ng-model="alarm.date" class="form-control" name="SetDate" ng-required="true">
-                       <p ng-show="registerForm.SetDate.$touched && registerForm.SetDate.$invalid">Date is required.</p>
+                      <input type="date" ng-model="alarm.date" class="form-control"  name="SetDate" ng-required="true">
+                       <p ng-show="registerForm.SetDate.$touched && registerForm.SetDate.$invalid"></p>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Time</label>
                         <input type="time" name="SetTime" ng-model="alarm.time"  class="form-control" required="true">
-                          <p ng-show="registerForm.SetTime.$touched && registerForm.SetTime.$invalid">Time is required.</p>
+                          <p ng-show="registerForm.SetTime.$touched && registerForm.SetTime.$invalid"></p>
                     </div>
                 </div>
                
                              <div class="col-md-4">
                     <div class="form-group">
                         <label for="lastname" class="control-label">Schedule</label>
-                             <select  class="form-control" name="itemDescFormId" size="1" ng-model="alarm.repeate" required="true" >
+                             <select  class="form-control" name="itemDescFormId" size="1" ng-model="alarm.repeate"  required="true" >
                         <option value="">Select</option>
                        <option value="Once">Once</option>
                                     <option value="Daily">Daily</option>
